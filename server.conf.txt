@@ -32,7 +32,7 @@ duplicate-cn
 client
 dev tun
 proto udp
-remote 94.177.12.154 9411
+remote XXXX 9411
 
 auth-user-pass
 resolv-retry infinite
@@ -42,166 +42,15 @@ nobind
 persist-key
 persist-tun
 <ca>
------BEGIN CERTIFICATE-----
-MIIFEjCCA/qgAwIBAgIJAPskmauXb4TrMA0GCSqGSIb3DQEBCwUAMIG2MQswCQYD
-VQQGEwJVUzELMAkGA1UECBMCQ0ExFTATBgNVBAcTDFNhbkZyYW5jaXNjbzEVMBMG
-A1UEChMMRm9ydC1GdW5zdG9uMR0wGwYDVQQLExRNeU9yZ2FuaXphdGlvbmFsVW5p
-dDEYMBYGA1UEAxMPRm9ydC1GdW5zdG9uIENBMRAwDgYDVQQpEwdFYXN5UlNBMSEw
-HwYJKoZIhvcNAQkBFhJtZUBteWhvc3QubXlkb21haW4wHhcNMTYxMjA0MDgyMzA1
-WhcNMjYxMjAyMDgyMzA1WjCBtjELMAkGA1UEBhMCVVMxCzAJBgNVBAgTAkNBMRUw
-EwYDVQQHEwxTYW5GcmFuY2lzY28xFTATBgNVBAoTDEZvcnQtRnVuc3RvbjEdMBsG
-A1UECxMUTXlPcmdhbml6YXRpb25hbFVuaXQxGDAWBgNVBAMTD0ZvcnQtRnVuc3Rv
-biBDQTEQMA4GA1UEKRMHRWFzeVJTQTEhMB8GCSqGSIb3DQEJARYSbWVAbXlob3N0
-Lm15ZG9tYWluMIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEA5rh3+VXI
-jQkaRjJI8w2Ik6vsMHtSHMn8qHry7YPaGQupJ9m8/EkZ20V7+UtK44o2RLtHMUuf
-GfZV1RDRCIig98sK/my9hjouolk2xz4R3iM4tfJRHOTbhroM8Jz1YcLrGpoU7ULK
-HEdTfu47bvFrGAY0LF9FO1OKScEflGLF/Td6PgcdCG6dzF4Ua6tJ1zuFH/5ui/Mk
-WhiU/MEDDa0GhTL10Sb2mciYfSo3o2uG84yBtQlnT7IPGhJvWvQ3GhHgcSyqZsK/
-n4ETnS76MSS5T2Ip0715aL1mI16gZB6V+7NCRHdT/leg+yOaaSgetSFmkjLRKYjG
-W2Gk+xpmEa4t9QIDAQABo4IBHzCCARswHQYDVR0OBBYEFOxUK7JtnM6nWbVgW0gO
-Mn25blUSMIHrBgNVHSMEgeMwgeCAFOxUK7JtnM6nWbVgW0gOMn25blUSoYG8pIG5
-MIG2MQswCQYDVQQGEwJVUzELMAkGA1UECBMCQ0ExFTATBgNVBAcTDFNhbkZyYW5j
-aXNjbzEVMBMGA1UEChMMRm9ydC1GdW5zdG9uMR0wGwYDVQQLExRNeU9yZ2FuaXph
-dGlvbmFsVW5pdDEYMBYGA1UEAxMPRm9ydC1GdW5zdG9uIENBMRAwDgYDVQQpEwdF
-YXN5UlNBMSEwHwYJKoZIhvcNAQkBFhJtZUBteWhvc3QubXlkb21haW6CCQD7JJmr
-l2+E6zAMBgNVHRMEBTADAQH/MA0GCSqGSIb3DQEBCwUAA4IBAQAVT4TjRVhfRDPK
-WJxU6iMR9nsRjgyjmmAiR7jDlRFYBBJlA1PliVHE7mea5hbUg80uO/lYD2J2IekE
-HZwwpgqDz/XVaUg7pjDy/yFSbJyIvCWKt8K9/RZNvWm8BmtIr/Esrf3TKtIFWTRC
-cPeVccdNm4oE2EimZpU9uTpbgJp3JLjvK409g80MjX5QktB/Q/ea+Hca0o0LpmkR
-WNrR2nOXimD572ms+2Ol5pieseduRIRlilrgumoxMI7NoaLSyUVI2rkwfHuMdWM7
-Ycdh9rwXyXtzUdJCnY4Zh3z0N35zxwjYny9uCGaqk2EhOjMGc1nFPySzhv7drnYG
-VNfWBzL9
------END CERTIFICATE-----
+
 </ca>
 
 <cert>
-Certificate:
-    Data:
-        Version: 3 (0x2)
-        Serial Number: 2 (0x2)
-    Signature Algorithm: sha256WithRSAEncryption
-        Issuer: C=US, ST=CA, L=SanFrancisco, O=Fort-Funston, OU=MyOrganizationalUnit, CN=Fort-Funston CA/name=EasyRSA/emailAddress=me@myhost.mydomain
-        Validity
-            Not Before: Dec  4 08:23:19 2016 GMT
-            Not After : Dec  2 08:23:19 2026 GMT
-        Subject: C=US, ST=CA, L=SanFrancisco, O=Fort-Funston, OU=MyOrganizationalUnit, CN=clients/name=EasyRSA/emailAddress=me@myhost.mydomain
-        Subject Public Key Info:
-            Public Key Algorithm: rsaEncryption
-                Public-Key: (2048 bit)
-                Modulus:
-                    00:b3:f1:78:e8:5c:e0:59:1e:11:de:b1:a2:49:18:
-                    56:67:ee:49:41:e3:c6:ad:75:32:47:cc:09:ab:12:
-                    52:07:b6:5b:e5:5f:a6:81:f7:7e:5b:d0:bd:8a:52:
-                    85:71:a5:7d:63:e8:28:49:75:c7:78:3c:ee:05:e3:
-                    97:ec:3f:a8:d3:31:a5:07:84:ed:58:92:ec:c0:1c:
-                    73:09:0f:ca:10:ae:35:bd:29:74:65:53:bf:09:9f:
-                    6b:27:18:ac:b7:37:a8:41:5d:68:92:be:5b:b4:ba:
-                    fa:f2:28:e8:a5:fa:89:0d:fa:02:e1:18:4a:b0:da:
-                    ff:7d:21:46:f1:15:b2:0b:aa:43:e2:13:75:6d:1e:
-                    ed:1f:db:7e:1b:aa:7e:35:7a:81:51:78:6d:06:d9:
-                    74:97:03:54:b2:5a:d4:da:25:63:fc:df:c1:6e:af:
-                    cf:ec:bb:d8:62:d9:73:a2:8e:5f:8a:e5:fd:ca:08:
-                    4f:72:af:e0:28:e2:e4:a9:08:2f:01:c7:7f:b5:6f:
-                    33:aa:b3:35:f6:18:d6:5e:b6:a7:b0:1b:3a:e3:82:
-                    97:fe:a5:00:7f:49:4c:bc:06:0d:08:f7:d5:11:38:
-                    9d:4d:2d:8e:5b:be:39:0d:c4:14:31:ad:75:7c:62:
-                    06:52:95:57:17:26:ea:f2:75:a9:ad:35:c1:a5:00:
-                    21:3d
-                Exponent: 65537 (0x10001)
-        X509v3 extensions:
-            X509v3 Basic Constraints: 
-                CA:FALSE
-            Netscape Comment: 
-                Easy-RSA Generated Certificate
-            X509v3 Subject Key Identifier: 
-                C5:C6:BE:BD:8B:95:34:F1:26:0D:65:3F:E1:69:78:B5:EF:27:48:D8
-            X509v3 Authority Key Identifier: 
-                keyid:EC:54:2B:B2:6D:9C:CE:A7:59:B5:60:5B:48:0E:32:7D:B9:6E:55:12
-                DirName:/C=US/ST=CA/L=SanFrancisco/O=Fort-Funston/OU=MyOrganizationalUnit/CN=Fort-Funston CA/name=EasyRSA/emailAddress=me@myhost.mydomain
-                serial:FB:24:99:AB:97:6F:84:EB
 
-            X509v3 Extended Key Usage: 
-                TLS Web Client Authentication
-            X509v3 Key Usage: 
-                Digital Signature
-    Signature Algorithm: sha256WithRSAEncryption
-         50:13:ba:6e:60:95:5f:b1:cf:59:25:8a:13:79:a2:83:22:70:
-         19:8a:6e:43:f3:0b:b5:34:38:6d:61:d8:dc:57:e6:a9:1a:b4:
-         01:6d:6f:0d:c0:75:89:0c:84:4a:e9:ac:ab:c2:eb:21:7d:4e:
-         fa:a4:51:40:3e:fd:94:fc:e8:3e:a4:f2:bf:76:58:b7:89:0b:
-         f7:a8:71:1c:76:9e:da:0e:15:d3:e3:b9:dd:90:49:98:f7:44:
-         7d:d4:db:41:5d:a8:7d:74:12:b2:c8:77:25:c6:42:18:74:b8:
-         ca:8a:b5:5c:25:23:01:b4:b0:a1:6f:bd:c8:32:7e:5f:91:b6:
-         1a:02:07:0f:9d:35:64:33:61:1f:1a:de:d9:bc:c4:6e:b5:d8:
-         80:9f:17:0d:7a:c4:dc:c6:ca:04:c5:f7:73:b5:82:a8:65:5e:
-         65:3c:21:cd:4d:47:20:b9:c0:44:a4:8c:85:b6:47:5a:33:f7:
-         94:60:48:ae:13:88:ac:03:3c:78:b0:0b:40:0d:92:2b:96:8e:
-         ae:29:ee:bc:53:37:28:9e:1d:7a:d9:55:8e:08:26:ab:cf:96:
-         a1:15:f0:b7:ab:dc:08:4c:c4:bd:34:0c:05:7e:05:8a:0b:c2:
-         09:9f:ec:18:59:ef:b4:a3:b4:f4:9a:37:07:0c:db:33:80:52:
-         c3:54:34:3a
------BEGIN CERTIFICATE-----
-MIIFUDCCBDigAwIBAgIBAjANBgkqhkiG9w0BAQsFADCBtjELMAkGA1UEBhMCVVMx
-CzAJBgNVBAgTAkNBMRUwEwYDVQQHEwxTYW5GcmFuY2lzY28xFTATBgNVBAoTDEZv
-cnQtRnVuc3RvbjEdMBsGA1UECxMUTXlPcmdhbml6YXRpb25hbFVuaXQxGDAWBgNV
-BAMTD0ZvcnQtRnVuc3RvbiBDQTEQMA4GA1UEKRMHRWFzeVJTQTEhMB8GCSqGSIb3
-DQEJARYSbWVAbXlob3N0Lm15ZG9tYWluMB4XDTE2MTIwNDA4MjMxOVoXDTI2MTIw
-MjA4MjMxOVowga4xCzAJBgNVBAYTAlVTMQswCQYDVQQIEwJDQTEVMBMGA1UEBxMM
-U2FuRnJhbmNpc2NvMRUwEwYDVQQKEwxGb3J0LUZ1bnN0b24xHTAbBgNVBAsTFE15
-T3JnYW5pemF0aW9uYWxVbml0MRAwDgYDVQQDEwdjbGllbnRzMRAwDgYDVQQpEwdF
-YXN5UlNBMSEwHwYJKoZIhvcNAQkBFhJtZUBteWhvc3QubXlkb21haW4wggEiMA0G
-CSqGSIb3DQEBAQUAA4IBDwAwggEKAoIBAQCz8XjoXOBZHhHesaJJGFZn7klB48at
-dTJHzAmrElIHtlvlX6aB935b0L2KUoVxpX1j6ChJdcd4PO4F45fsP6jTMaUHhO1Y
-kuzAHHMJD8oQrjW9KXRlU78Jn2snGKy3N6hBXWiSvlu0uvryKOil+okN+gLhGEqw
-2v99IUbxFbILqkPiE3VtHu0f234bqn41eoFReG0G2XSXA1SyWtTaJWP838Fur8/s
-u9hi2XOijl+K5f3KCE9yr+Ao4uSpCC8Bx3+1bzOqszX2GNZetqewGzrjgpf+pQB/
-SUy8Bg0I99UROJ1NLY5bvjkNxBQxrXV8YgZSlVcXJurydamtNcGlACE9AgMBAAGj
-ggFtMIIBaTAJBgNVHRMEAjAAMC0GCWCGSAGG+EIBDQQgFh5FYXN5LVJTQSBHZW5l
-cmF0ZWQgQ2VydGlmaWNhdGUwHQYDVR0OBBYEFMXGvr2LlTTxJg1lP+FpeLXvJ0jY
-MIHrBgNVHSMEgeMwgeCAFOxUK7JtnM6nWbVgW0gOMn25blUSoYG8pIG5MIG2MQsw
-CQYDVQQGEwJVUzELMAkGA1UECBMCQ0ExFTATBgNVBAcTDFNhbkZyYW5jaXNjbzEV
-MBMGA1UEChMMRm9ydC1GdW5zdG9uMR0wGwYDVQQLExRNeU9yZ2FuaXphdGlvbmFs
-VW5pdDEYMBYGA1UEAxMPRm9ydC1GdW5zdG9uIENBMRAwDgYDVQQpEwdFYXN5UlNB
-MSEwHwYJKoZIhvcNAQkBFhJtZUBteWhvc3QubXlkb21haW6CCQD7JJmrl2+E6zAT
-BgNVHSUEDDAKBggrBgEFBQcDAjALBgNVHQ8EBAMCB4AwDQYJKoZIhvcNAQELBQAD
-ggEBAFATum5glV+xz1klihN5ooMicBmKbkPzC7U0OG1h2NxX5qkatAFtbw3AdYkM
-hErprKvC6yF9TvqkUUA+/ZT86D6k8r92WLeJC/eocRx2ntoOFdPjud2QSZj3RH3U
-20FdqH10ErLIdyXGQhh0uMqKtVwlIwG0sKFvvcgyfl+RthoCBw+dNWQzYR8a3tm8
-xG612ICfFw16xNzGygTF93O1gqhlXmU8Ic1NRyC5wESkjIW2R1oz95RgSK4TiKwD
-PHiwC0ANkiuWjq4p7rxTNyieHXrZVY4IJqvPlqEV8Ler3AhMxL00DAV+BYoLwgmf
-7BhZ77SjtPSaNwcM2zOAUsNUNDo=
------END CERTIFICATE-----
 </cert>
 
 <key>
------BEGIN PRIVATE KEY-----
-MIIEvQIBADANBgkqhkiG9w0BAQEFAASCBKcwggSjAgEAAoIBAQCz8XjoXOBZHhHe
-saJJGFZn7klB48atdTJHzAmrElIHtlvlX6aB935b0L2KUoVxpX1j6ChJdcd4PO4F
-45fsP6jTMaUHhO1YkuzAHHMJD8oQrjW9KXRlU78Jn2snGKy3N6hBXWiSvlu0uvry
-KOil+okN+gLhGEqw2v99IUbxFbILqkPiE3VtHu0f234bqn41eoFReG0G2XSXA1Sy
-WtTaJWP838Fur8/su9hi2XOijl+K5f3KCE9yr+Ao4uSpCC8Bx3+1bzOqszX2GNZe
-tqewGzrjgpf+pQB/SUy8Bg0I99UROJ1NLY5bvjkNxBQxrXV8YgZSlVcXJurydamt
-NcGlACE9AgMBAAECggEAZ/WfW+ekuff0bQuFbeOAsCTr8ARPmZE3DmHkSBCakdga
-eYdsZHP/bb5Icyy/6eupaNoMxHwmVOImxgI6mIQi3nk1FgYHNgAUhd0p3Ndhb4em
-hnX3yD69BSs0Ne88gdHHBJSZwQX3Z5ALQXK/Dn2TRx7lIPTu2gR8TOe327skFTY+
-ThTn55EJDipt7s2G2ZExitr1vi9K/++oZ221ww+p4/e+OR895G8zt+aPrUKHRLdV
-HwSgtgjQH5wChLD5gqqqvWzS+4Tjc9402kd/ds7H84CqbnZcWFBoJcYGZZTsY/ru
-AcUAqmV9HCgj5yq+tO1ILYmwj110xKCR/myZysziwQKBgQDczsyYZtIIxcGlqvCk
-ut8wrysszmn8fOrPiO8GK1XE0rpIqZZv48MU1MTuRzWek2fhjGYvuOJOGkcWbRRI
-usHjX+Gc8QEWu6YX0yIge06xNgs5khg7sn5TF+CivWLgdP3NNmb48PvtF4nEYOo2
-TOcLk2zaMvuUtNjT5JVaOCLr8QKBgQDQn1qzbSi/xAFh+bf6oOig9rSV1Hvtx4X5
-qDF07eIwOOiZZoUipTdRUReStiDQjLqaofHF3V7Ht86kcDhqlVe5EZlZvKNGSGKp
-SODe7JndNeWQSYIFDBmOw/FoImIzAOG/VjIlGo5tkUY7PTAd5vdmEZk8vZAH4mUO
-vzsxoVqGDQKBgHbgMw/9kyg752Rcok/dd5mLRPBLdI4FZpkyvJSSsgtT9Ax4mNBG
-S9mkLx2lYr2r2Gp6nu0kWVn5FbqCIUCCoy3ZiepnadGmVuZOufnIyPXpBaQJ/lft
-Ycs0eLDEyz3SXm2j005E1yyu1nHOR2nSfzUhOqJCfmVx86YoUywOOubRAoGBAJ3M
-Wwuqfo8GT9Fu1EVDnpHZ6WAHN7H0IBdlq/r40ASPlwgo7nz1IPFl+AGltw5n0+GQ
-qtJyDfXcxvXEWDfuPEskz6x7rbhEmjPXhxe3OO6EjN5la24r58z/0sJkd4iCmz5h
-kU5VVvPzVX8LWjDT+b9/gjvaWm5MRQoxhTGWDWWlAoGAY7sIAGBq8meebN/imnOg
-U//5RbGtvxNDwGRk5wmNYTFI4JzV7vGso8Jc6SQD+YgPenh5bmsNvHqXfqxGHsxC
-n1aC84TurrEv9LKJP6lrwjD8nUSOLvT4Gl6GSgKEEFT45PMNls/J+9I0UzsJfGzf
-ROGX1YKq8UXl/WgsJ5C2F/8=
------END PRIVATE KEY-----
+
 </key>
 
 ns-cert-type server
