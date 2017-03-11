@@ -25,6 +25,9 @@ status log/status.log
 verb 3
 duplicate-cn
 
+systemctl -f enable openvpn@server.service
+systemctl start openvpn@server.service
+
  iptables -t nat -A POSTROUTING -s 10.200.100.0/24 -j SNAT --to 199.175.48.187
  iptables -t nat -A PREROUTING -p tcp -d 94.203.71.220 --dport 8001:8002 -j DNAT --to 10.200.100.101:8001-8002
 
