@@ -11,6 +11,7 @@ key easy-rsa/keys/server.key
 dh easy-rsa/keys/dh2048.pem
 #client-config-dir ccd
 #plugin /usr/lib/openvpn/plugins/openvpn-plugin-auth-pam.so login
+#plugin /etc/openvpn/radiusplugin.so /etc/openvpn/radiusplugin.cnf
 #client-cert-not-required
 #username-as-common-name
 ifconfig-pool-persist ipp.txt
