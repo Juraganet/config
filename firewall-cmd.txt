@@ -1,0 +1,51 @@
+firewall-cmd --list-all-zones
+firewall-cmd --zone=home --change-interface=eth1
+firewall-cmd --zone=public --change-interface=eth0
+firewall-cmd --zone=public --add-masquerade
+
+firewall-cmd --permanent --zone=home --change-interface=eth1
+firewall-cmd --permanent --zone=public --change-interface=eth0
+firewall-cmd --permanent --zone=public --add-masquerade
+
+
+port forwarding test:
+
+firewall-cmd --zone=public --add-forward-port=port=3389:proto=tcp:toport=3389:toaddr=192.168.211.11
+firewall-cmd --permanent --zone=public --add-forward-port=port=3389:proto=tcp:toport=3389:toaddr=192.168.211.11
+
+memang harus 2x no permanent then with permanent
+
+
+add port
+
+firewall-cmd --zone=public --add-port=443/tcp
+firewall-cmd --permanent --zone=public --add-port=443/tcp
+firewall-cmd --zone=public --add-port=5555/tcp
+firewall-cmd --permanent --zone=public --add-port=5555/tcp
+firewall-cmd --zone=public --add-port=1194/tcp
+firewall-cmd --permanent --zone=public --add-port=1194/tcp
+firewall-cmd --zone=public --add-port=1194/udp
+firewall-cmd --permanent --zone=public --add-port=1194/udp
+firewall-cmd --zone=public --add-port=500/udp
+firewall-cmd --permanent --zone=public --add-port=500/udp
+firewall-cmd --zone=public --add-port=4500/udp
+firewall-cmd --permanent --zone=public --add-port=4500/udp
+firewall-cmd --zone=public --add-port=1701/udp
+firewall-cmd --permanent --zone=public --add-port=1701/udp
+
+firewall-cmd --zone=public --add-masquerade
+firewall-cmd --permanent --zone=public --add-masquerade
+
+
+direct passthrough iptables command biasa
+firewall-cmd --direct --passthrough ipv4 -t nat -I POSTROUTING -s 10.130.30.2/32 -j SNAT --to 103.248.23.150
+firewall-cmd --direct --passthrough ipv4 -t nat -I POSTROUTING -s 10.130.30.3/32 -j SNAT --to 103.248.23.151
+firewall-cmd --direct --passthrough ipv4 -t nat -I POSTROUTING -s 10.130.30.4/32 -j SNAT --to 103.248.23.152
+firewall-cmd --direct --passthrough ipv4 -t nat -I POSTROUTING -s 10.130.30.5/32 -j SNAT --to 103.248.23.153
+firewall-cmd --direct --passthrough ipv4 -t nat -I POSTROUTING -s 10.130.30.6/32 -j SNAT --to 103.248.23.154
+
+firewall-cmd --permanent --direct --passthrough ipv4 -t nat -I POSTROUTING -s 10.130.30.2/32 -j SNAT --to 103.248.23.150
+firewall-cmd --permanent --direct --passthrough ipv4 -t nat -I POSTROUTING -s 10.130.30.3/32 -j SNAT --to 103.248.23.151
+firewall-cmd --permanent --direct --passthrough ipv4 -t nat -I POSTROUTING -s 10.130.30.4/32 -j SNAT --to 103.248.23.152
+firewall-cmd --permanent --direct --passthrough ipv4 -t nat -I POSTROUTING -s 10.130.30.5/32 -j SNAT --to 103.248.23.153
+firewall-cmd --permanent --direct --passthrough ipv4 -t nat -I POSTROUTING -s 10.130.30.6/32 -j SNAT --to 103.248.23.154
