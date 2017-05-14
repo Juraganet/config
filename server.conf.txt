@@ -45,6 +45,8 @@ nobind
 
 persist-key
 persist-tun
+
+fast-io
 <ca>
 
 </ca>
