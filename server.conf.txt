@@ -32,6 +32,9 @@ systemctl start openvpn@server.service
  iptables -t nat -A POSTROUTING -s 10.130.30.0/24 -j SNAT --to 199.175.48.187
  iptables -t nat -A PREROUTING -p tcp -d 94.203.71.220 --dport 8001:8002 -j DNAT --to 10.130.30.101:8001-8002
 
+Forwarding without redirect-gateway
+iptables -t nat -A PREROUTING -p tcp -d 165.227.17.16 --dport 40100 -j DNAT --to-destination 10.130.30.10:40100
+iptables -t nat -A POSTROUTING -d 10.130.30.10 -p tcp --dport 40100 -j SNAT --to-source 10.130.30.1
 
 client
 dev tun
