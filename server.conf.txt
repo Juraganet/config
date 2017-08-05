@@ -15,7 +15,7 @@ dh easy-rsa/keys/dh2048.pem
 #client-cert-not-required
 #username-as-common-name
 ifconfig-pool-persist ipp.txt
-server 10.130.30.0 255.255.0.0
+server 10.130.30.0 255.255.255.0
 topology subnet
 push "redirect-gateway def1"
 push "dhcp-option DNS 8.8.8.8"
