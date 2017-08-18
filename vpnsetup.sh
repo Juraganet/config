@@ -272,6 +272,7 @@ else
 	echo "Finally, tell me your name for the client certificate"
 	echo "Please, use one word only, no special characters"
 	read -p "Client name: " -e -i client CLIENT
+	read -p "Forwarded port: " -e -i 4000 IPORT
 	echo ""
 	echo "Okay, that was all I needed. We are ready to setup your OpenVPN server now"
 	read -n1 -r -p "Press any key to continue..."
@@ -372,7 +373,7 @@ mkdir /etc/openvpn/ccd
 mkdir /etc/openvpn/ports
 mkdir /etc/openvpn/cip
 echo "10" > /etc/openvpn/ip
-echo "4000">/etc/openvpn/cport
+echo "$IPORT">/etc/openvpn/cport
 echo "#!/bin/bash" > /etc/openvpn/deliptables
 chmod 755  /etc/openvpn/deliptables
 	# Enable net.ipv4.ip_forward for the system
@@ -477,7 +478,7 @@ comp-lzo
 key-direction 1
 verb 3" > /etc/openvpn/client-common.txt
 	# Generates the custom client.ovpn
-	newclient "$CLIENT" 4000
+	newclient "$CLIENT" $IPORT
 	echo ""
 	echo "Finished!"
 	echo ""
