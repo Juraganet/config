@@ -163,8 +163,8 @@ if [[ -e /etc/openvpn/server.conf ]]; then
 				IP=$(firewall-cmd --direct --get-rules ipv4 nat POSTROUTING | grep '\-s 10.8.0.0/24 -j SNAT --to ' | cut -d " " -f 7)
 				firewall-cmd --direct --remove-rule ipv4 nat PREROUTING 0 -d $IP -p tcp --dport $cport -j DNAT --to-destination $ccip:$cport
 				firewall-cmd --permanent --direct --remove-rule ipv4 nat PREROUTING 0 -d $IP -p tcp --dport $cport -j DNAT --to-destination $ccip:$cport
-				firewall-cmd --direct --remove-rule ipv4 nat POSTROUTING 0 -d 10.8.0.$cip -p tcp --dport $cport -j SNAT --to-source 10.8.0.1
-				firewall-cmd --permanent --direct --remove-rule ipv4 nat POSTROUTING 0 -d 10.8.0.$cip -p tcp --dport $cport -j SNAT --to-source 10.8.0.1
+				firewall-cmd --direct --remove-rule ipv4 nat POSTROUTING 0 -d $ccip -p tcp --dport $cport -j SNAT --to-source 10.8.0.1
+				firewall-cmd --permanent --direct --remove-rule ipv4 nat POSTROUTING 0 -d $ccip -p tcp --dport $cport -j SNAT --to-source 10.8.0.1
 				firewall-cmd --zone=public --remove-port=$cport/tcp
 				firewall-cmd --permanent --zone=public --remove-port=$cport/tcp
 			else
