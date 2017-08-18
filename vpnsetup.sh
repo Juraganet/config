@@ -69,12 +69,17 @@ newclient () {
 		firewall-cmd --permanent --zone=public --add-port=$2/tcp
 		firewall-cmd --direct --add-rule ipv4 nat PREROUTING 0 -d $IP -p tcp --dport $2 -j DNAT --to-destination 10.8.0.$cip:$2
 		firewall-cmd --permanent --direct --add-rule ipv4 nat PREROUTING 0 -d $IP -p tcp --dport $2 -j DNAT --to-destination 10.8.0.$cip:$2
+		firewall-cmd --direct --add-rule ipv4 nat POSTROUTING 0 -d 10.8.0.$cip -p tcp --dport $2 -j SNAT --to-source 10.8.0.1
+		firewall-cmd --permanent --direct --add-rule ipv4 nat POSTROUTING 0 -d 10.8.0.$cip -p tcp --dport $2 -j SNAT --to-source 10.8.0.1
     	else
     		IP=$(grep 'iptables -t nat -A POSTROUTING -s 10.8.0.0/24 -j SNAT --to ' $RCLOCAL | cut -d " " -f 11)
     		iptables -t nat -A PREROUTING -d $IP -p tcp --dport $2 -j DNAT --to-destination 10.8.0.$cip:$2
+		iptables -t nat -A POSTROUTING -d 10.8.0.$cip -p tcp --dport $2 -j SNAT --to-source 10.8.0.1
 		iptables -A INPUT -p tcp --dport $2 -j ACCEPT
 		sed -i "1 a\iptables -t nat -A PREROUTING -d $IP -p tcp --dport $2 -j DNAT --to-destination 10.8.0.$cip:$2" $RCLOCAL
 		sed -i "1 a\iptables -t nat -D PREROUTING  -d $IP -p tcp --dport $2 -j DNAT --to-destination 10.8.0.$cip:$2" /etc/openvpn/deliptables
+		sed -i "1 a\iptables -t nat -A POSTROUTING -d 10.8.0.$cip -p tcp --dport $2 -j SNAT --to-source 10.8.0.1" $RCLOCAL
+		sed -i "1 a\iptables -t nat -D POSTROUTING -d 10.8.0.$cip -p tcp --dport $2 -j SNAT --to-source 10.8.0.1" /etc/openvpn/deliptables
 		sed -i "1 a\iptables -D INPUT -p tcp --dport $2 -j ACCEPT" /etc/openvpn/deliptables
 		sed -i "1 a\iptables -A INPUT -p tcp --dport $2 -j ACCEPT" $RCLOCAL
 	fi
@@ -158,12 +163,16 @@ if [[ -e /etc/openvpn/server.conf ]]; then
 				IP=$(firewall-cmd --direct --get-rules ipv4 nat POSTROUTING | grep '\-s 10.8.0.0/24 -j SNAT --to ' | cut -d " " -f 7)
 				firewall-cmd --direct --remove-rule ipv4 nat PREROUTING 0 -d $IP -p tcp --dport $cport -j DNAT --to-destination $ccip:$cport
 				firewall-cmd --permanent --direct --remove-rule ipv4 nat PREROUTING 0 -d $IP -p tcp --dport $cport -j DNAT --to-destination $ccip:$cport
+				firewall-cmd --direct --remove-rule ipv4 nat POSTROUTING 0 -d 10.8.0.$cip -p tcp --dport $cport -j SNAT --to-source 10.8.0.1
+				firewall-cmd --permanent --direct --remove-rule ipv4 nat POSTROUTING 0 -d 10.8.0.$cip -p tcp --dport $cport -j SNAT --to-source 10.8.0.1
 				firewall-cmd --zone=public --remove-port=$cport/tcp
 				firewall-cmd --permanent --zone=public --remove-port=$cport/tcp
 			else
 		    	IP=$(grep 'iptables -t nat -A POSTROUTING -s 10.8.0.0/24 -j SNAT --to ' $RCLOCAL | cut -d " " -f 11)
 		    		iptables -t nat -D PREROUTING -d $IP -p tcp --dport $cport -j DNAT --to-destination $ccip:$cport
+				iptables -t nat -D POSTROUTING -d 10.8.0.$cip -p tcp --dport $cport -j SNAT --to-source 10.8.0.1
 				sed -i "/iptables -t nat -A PREROUTING -d $IP -p tcp --dport $cport -j DNAT --to-destination $ccip:$cport/d" $RCLOCAL
+				sed -i "/iptables -t nat -A POSTROUTING -d 10.8.0.$cip -p tcp --dport $cport -j SNAT --to-source 10.8.0.1/d" $RCLOCAL
 				sed -i "/iptables -t nat -A INPUT -p tcp --dport $cport -j ACCEPT/d" $RCLOCAL
 				iptables -D INPUT -p tcp --dport $cport -j ACCEPT
 			fi
