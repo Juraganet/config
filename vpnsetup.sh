@@ -172,7 +172,7 @@ if [[ -e /etc/openvpn/server.conf ]]; then
 		    		iptables -t nat -D PREROUTING -d $IP -p tcp --dport $cport -j DNAT --to-destination $ccip:$cport
 				iptables -t nat -D POSTROUTING -d $ccip -p tcp --dport $cport -j SNAT --to-source 10.8.0.1
 				sed -i "/iptables -t nat -A PREROUTING -d $IP -p tcp --dport $cport -j DNAT --to-destination $ccip:$cport/d" $RCLOCAL
-				sed -i "/iptables -t nat -A POSTROUTING -d ccip -p tcp --dport $cport -j SNAT --to-source 10.8.0.1/d" $RCLOCAL
+				sed -i "/iptables -t nat -A POSTROUTING -d $ccip -p tcp --dport $cport -j SNAT --to-source 10.8.0.1/d" $RCLOCAL
 				sed -i "/iptables -t nat -A INPUT -p tcp --dport $cport -j ACCEPT/d" $RCLOCAL
 				iptables -D INPUT -p tcp --dport $cport -j ACCEPT
 			fi
