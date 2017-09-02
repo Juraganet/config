@@ -99,7 +99,7 @@ case "$1" in
   # Block vpn clients to see each other
   $IPTABLES -A FORWARD -p all -s $PPP_IP_RANGE -d $PPP_IP_RANGE -j DROP
   
-   =# Block smtp traffic for pptpd clients
+  # Block smtp traffic for pptpd clients
   $IPTABLES -A FORWARD -i $PPP_IFACE -o $INET_IFACE -s $PPP_IP_RANGE -p tcp -m multiport --dports 25,465,587 -j DROP
 	
 
