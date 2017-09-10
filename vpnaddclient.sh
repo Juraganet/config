@@ -1,12 +1,4 @@
 #!/bin/bash
-# OpenVPN road warrior installer for Debian, Ubuntu and CentOS
-
-# This script will work on Debian, Ubuntu, CentOS and probably other distros
-# of the same families, although no support is offered for them. It isn't
-# bulletproof but it will probably work if you simply want to setup a VPN on
-# your Debian/Ubuntu/CentOS box. It has been designed to be as unobtrusive and
-# universal as possible.
-
 
 # Detect Debian users running the script with "sh" instead of bash
 if readlink /proc/$$/exe | grep -qs "dash"; then
@@ -101,13 +93,14 @@ if [[ -e /etc/openvpn/server.conf ]]; then
 	while :
 	do
 	clear
-		echo "Looks like OpenVPN is already installed"
+		echo "OpenVPN port forwarding client management"
+		echo "written by juraganet@gmail.com (www.fiverr.com/juraganet)"
 		echo ""
 		echo "What do you want to do?"
 		echo "   1) Add a new user"
 		echo "   2) Revoke an existing user"
 		echo "   3) Exit"
-		read -p "Select an option [1-4]: " option
+		read -p "Select an option [1-3]: " option
 		case $option in
 			1) 
 			echo ""
@@ -116,7 +109,7 @@ if [[ -e /etc/openvpn/server.conf ]]; then
 			read -p "Client name: " -e -i client CLIENT
 			cport=$( tail -n 1 /etc/openvpn/cport )
 			cport=$(( $cport + 1 ))
-			echo "Port forwarding IP?"
+			echo "Please enter the port number to be forwarded?"
 			read -p "Port ($cport-5000): " -e -i $cport PORT
 			cd /etc/openvpn/easy-rsa/
 			./easyrsa build-client-full $CLIENT nopass
