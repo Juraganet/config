@@ -1,0 +1,26 @@
+yum install epel-release
+
+yum install autoconf.noarch automake file gcc libtool patch quilt git make rpm-build zlib-devel pam-devel openssl-devel lzo-devel
+
+if problem 
+  yum update nss --disablerepo=epel
+  
+sftp wget install.tgz
+
+tar zxvf install.tgz
+
+cd install
+rpmbuild -ta openvpn-2.4.2.tar.gz
+
+cd /root/rpmbuild/RPMS
+yum install openvpn*rpm
+
+cd rad*
+
+make
+
+copy2
+
+generate cert
+
+configure firewall
