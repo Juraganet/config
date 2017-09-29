@@ -2,6 +2,8 @@ yum install epel-release
 
 yum install autoconf.noarch automake file gcc libtool patch quilt git make rpm-build zlib-devel pam-devel openssl-devel lzo-devel
 
+yum install autoconf.noarch automake file gcc libtool patch quilt git make rpm-build zlib-devel pam-devel openssl-devel lzo-devel gcc-c++ libgcrypt-devel net-tools lzo lz4
+
 if problem 
   yum update nss --disablerepo=epel
   
