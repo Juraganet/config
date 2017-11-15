@@ -10,7 +10,7 @@
 ### END INIT INFO
 DAEMON=/usr/local/vpnserver/vpnserver
 LOCK=/var/lock/subsys/vpnserver
-TAP1=10.130.30.1
+TAP1=10.130.0.1
 MASK=255.255.255.0
 
 test -x $DAEMON || exit 0
@@ -20,8 +20,9 @@ $DAEMON start
 touch $LOCK
 sleep 1
 /sbin/ifconfig tap_vpn $TAP1 netmask $MASK
-systemctl restart dhcpd.service
-obfsproxy --log-min-severity=info obfs2 --dest=127.0.0.1:1194 server x.x.x.x:443 > /dev/null 2>&1 &
+service isc-dhcp-server restart
+#systemctl restart dhcpd.service
+#obfsproxy --log-min-severity=info obfs2 --dest=127.0.0.1:1194 server x.x.x.x:443 > /dev/null 2>&1 &
 ;;
 stop)
 $DAEMON stop
@@ -35,8 +36,9 @@ sleep 3
 $DAEMON start
 sleep 1
 /sbin/ifconfig tap_vpn $TAP1 netmask $MASK
-systemctl restart dhcpd.service
-obfsproxy --log-min-severity=info obfs2 --dest=127.0.0.1:1194 server x.x.x.x:443 > /dev/null 2>&1 &
+service isc-dhcp-server restart
+#systemctl restart dhcpd.service
+#obfsproxy --log-min-severity=info obfs2 --dest=127.0.0.1:1194 server x.x.x.x:443 > /dev/null 2>&1 &
 ;;
 *)
 echo "Usage: $0 {start|stop|restart}"
