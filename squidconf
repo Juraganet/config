@@ -1,0 +1,138 @@
+#/etc/pam.d/squid
+#auth required /lib/security/pam_unix.so
+#account required /lib/security/pam_unix.so
+#chmod u+s /usr/lib/squid3/pam_auth
+
+#acl localhost src 127.0.0.1/32 steve/job123
+#http_access allow localhost
+auth_param basic program /usr/lib/squid/basic_pam_auth
+auth_param basic children 5
+auth_param basic realm Squid Proxy Restricted
+auth_param basic credentialsttl 2 hours
+#acl manager proto cache_object
+#acl to_localhost dst 127.0.0.0/8
+acl localnet src 10.0.0.0/8		# RFC1918 possible internal network
+acl localnet src 172.16.0.0/12	# RFC1918 possible internal network
+acl localnet src 192.168.0.0/16	# RFC1918 possible internal network
+acl localnet src 127.0.0.0/8	# RFC1918 possible internal network
+
+acl SSL_ports port 443
+acl SSL_ports port 9001			# webmin
+acl Safe_ports port 80			# http
+acl Safe_ports port 21			# ftp
+acl Safe_ports port 443			# https
+acl Safe_ports port 70			# gopher
+acl Safe_ports port 210			# wais
+acl Safe_ports port 1025-65535	# unregistered ports
+acl Safe_ports port 280			# http-mgmt
+acl Safe_ports port 488			# gss-http
+acl Safe_ports port 591			# filemaker
+acl Safe_ports port 777			# multiling http
+acl Safe_ports port 9001		# webmin
+acl CONNECT method CONNECT
+
+#http_access allow manager
+#http_access deny manager
+#http_access deny !Safe_ports
+#http_access deny CONNECT !SSL_ports
+acl ncsaauth proxy_auth REQUIRED
+http_access allow ncsaauth
+http_access allow localnet
+http_access allow localhost
+icp_access allow localnet
+icp_access deny all
+htcp_access allow localnet
+htcp_access deny all
+http_port 9898
+http_access deny all
+
+#-----ip address routing-----
+acl ip1 myip 104.254.61.99
+acl ip2 myip 172.97.71.100
+acl ip3 myip 172.97.71.101
+acl ip4 myip 172.97.71.102
+acl ip5 myip 172.97.71.103
+acl ip6 myip 172.97.71.104
+acl ip7 myip 172.97.71.105
+acl ip8 myip 172.97.71.106
+acl ip9 myip 172.97.71.107
+acl ip10 myip 172.97.71.108
+acl ip11 myip 172.97.71.109
+acl ip12 myip 172.97.71.110
+acl ip13 myip 172.97.71.111
+acl ip14 myip 172.97.71.112
+acl ip15 myip 172.97.71.113
+acl ip16 myip 172.97.71.114
+acl ip17 myip 172.97.71.115
+
+tcp_outgoing_address 104.254.61.99 ip1
+tcp_outgoing_address 172.97.71.100 ip2
+tcp_outgoing_address 172.97.71.101 ip3
+tcp_outgoing_address 172.97.71.102 ip4
+tcp_outgoing_address 172.97.71.103 ip5
+tcp_outgoing_address 172.97.71.104 ip6
+tcp_outgoing_address 172.97.71.105 ip7
+tcp_outgoing_address 172.97.71.106 ip8
+tcp_outgoing_address 172.97.71.107 ip9
+tcp_outgoing_address 172.97.71.108 ip10
+tcp_outgoing_address 172.97.71.109 ip11
+tcp_outgoing_address 172.97.71.110 ip12
+tcp_outgoing_address 172.97.71.111 ip13
+tcp_outgoing_address 172.97.71.112 ip14
+tcp_outgoing_address 172.97.71.113 ip15
+tcp_outgoing_address 172.97.71.114 ip16
+tcp_outgoing_address 172.97.71.115 ip17
+
+hierarchy_stoplist cgi-bin ?
+access_log /var/log/squid3/access.log squid
+refresh_pattern ^ftp:		1440	20%	10080
+refresh_pattern ^gopher:	1440	0%	1440
+refresh_pattern (cgi-bin|\?)	0	0%	0
+refresh_pattern .		0	20%	4320
+#icp_port 3130
+#coredump_dir /var/spool/squid
+#cache_dir ufs /var/spool/squid 50 16 256
+#cache_mem 50 MB
+cache deny all
+# This needs to be "forwarded_for delete". it works in squid installed via yum but is sometimes leaked as "HTTP_X_FORWARDED_FOR = unknown" when tested.
+forwarded_for delete
+# I'm not sure if i need this next commented one. squid 3.0 ignores this.
+via off
+
+# Anonymising headers
+request_header_access Allow allow all
+# i need the following custom directives. squid 3.0 returns "error unknown header name" when they are included.
+# request_header_access X_REQUESTED_WITH allow all
+# request_header_access X_NEW_APP allow all
+# request_header_access X_CSRFTOKEN allow all
+# the rest are the standard Anonymising directives.
+request_header_access Authorization allow all
+request_header_access WWW-Authenticate allow all
+request_header_access Proxy-Authorization allow all
+request_header_access Proxy-Authenticate allow all
+request_header_access Cache-Control allow all
+request_header_access Content-Encoding allow all
+request_header_access Content-Length allow all
+request_header_access Content-Type allow all
+request_header_access Date allow all
+request_header_access Expires allow all
+request_header_access Host allow all
+request_header_access If-Modified-Since allow all
+request_header_access Last-Modified allow all
+request_header_access Location allow all
+request_header_access Pragma allow all
+request_header_access Accept allow all
+request_header_access Accept-Charset allow all
+request_header_access Accept-Encoding allow all
+request_header_access Accept-Language allow all
+request_header_access Content-Language allow all
+request_header_access Mime-Version allow all
+request_header_access Retry-After allow all
+request_header_access Title allow all
+request_header_access Connection allow all
+request_header_access Proxy-Connection allow all
+request_header_access User-Agent allow all
+request_header_access Cookie allow all
+request_header_access All deny all
+
+
