@@ -1,0 +1,15 @@
+LET MAC ALLOW US TO CREATE NEW USER AS IF INSTALLING FRESH MACOSX
+1. Reboot Mac in single user mode by pressing COMMAND + S
+2. mount disk as read-write: /sbin/mount -uw /
+3. remove .applesetupdone file: rm /var/db/.applesetupdone
+4. reboot
+5. you will be prompted to create new user on boot.
+
+RE-CREATE OLD PROBLEMATIC MAC USER
+1. Open System Preference > Users & Groups
+2. Delete the problematic user, but select "Don't change home folder", a.k.a do not delete user directory.
+3. The deleted user's direcory name will become "<user> (deleted)". Rename this folder name by removing the "(deleted)" part
+4. Add new user with same username as the old deleted user. System will detect that there is already a user folder existed, then select to use this existing folder.
+
+Your old problematic user should now become as fresh as new but without losing files/documents.
+DONE!
