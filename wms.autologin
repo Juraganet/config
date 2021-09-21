@@ -1,0 +1,8 @@
+:if ([/ping address=8.8.8.8 count=2] = 0) do={
+log warning ("WMS is down, script logging in...")
+:local ip [/ip address get [/ip address find interface="wlan1"] address];
+:local mac [/interface wireless get [ find default-name="wlan1"] mac-address];
+:local ip [put [:pick $ip 0 [:find $ip "/"]]];
+/tool fetch mode=https url="https://welcome2.wifi.id/wms/auth/authnew/autologin/quarantine.php\?ipc=$ip&gw_id=WAG2-D4-KBU&mac=$mac&redirect=%ohttp://detectportal.firefox.com/success.txt&wlan=GPON01-D4-PGR-3%20pon%2013/1/21/1%3A4090%3ANAMASSID" http-method=post http-data="username=PASSWORD.ujk@wmslite.1255904391&password=PASSWORD" http-header-field="User-Agent: Mozilla/5, referer: https://welcome2.wifi.id" keep-result=no;
+log warning ("Script was running fine ".$ip." ".$mac);
+}
